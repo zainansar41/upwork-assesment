@@ -22,8 +22,11 @@ export function PlpProductCard({ spec, onAddToCart }: PlpProductCardProps) {
         style={{ height: mediaHeightPx }}
       >
         <div
-          className="absolute left-1/2 top-0 h-full -translate-x-1/2 overflow-hidden bg-white dark:bg-transparent"
-          style={{ width: PLP_PRODUCT_MEDIA_IMAGE_WIDTH_PX }}
+          className={cn(
+            "absolute top-0 h-full overflow-hidden bg-white dark:bg-transparent",
+            "left-0 right-0 w-full translate-x-0",
+            "lg:left-1/2 lg:w-[85.564px] lg:max-w-none lg:-translate-x-1/2 lg:right-auto",
+          )}
         >
           <img
             src={imageSrc}
@@ -79,7 +82,9 @@ export function PlpProductCard({ spec, onAddToCart }: PlpProductCardProps) {
           showShowMoreLink && "gap-1.5",
         )}
       >
-        <p className="w-[92px]">{productCopy.name}</p>
+        <p className="w-full max-w-full px-0.5 text-center lg:w-[92px] lg:max-w-[92px] lg:px-0">
+          {productCopy.name}
+        </p>
         <p className="whitespace-nowrap">{productCopy.sizes}</p>
         <p className="whitespace-nowrap text-black dark:text-foreground">
           {productCopy.brand}

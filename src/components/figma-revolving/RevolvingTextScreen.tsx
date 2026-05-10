@@ -99,7 +99,7 @@ export function RevolvingTextScreen() {
     if (typeof window === "undefined") return false
     return window.localStorage.getItem(DARK_MODE_STORAGE_KEY) === "true"
   })
-  const [waitlistOpen, setWaitlistOpen] = useState(false)
+  const [waitlistOpen, setWaitlistOpen] = useState(true)
 
   useEffect(() => {
     document.documentElement.classList.toggle("dark", darkMode)
@@ -108,6 +108,7 @@ export function RevolvingTextScreen() {
 
   const visibleColumns =
     density === 8 ? productColumns : productColumns.slice(0, 4)
+  const flatSpecs = visibleColumns.flat()
 
   return (
     <div
@@ -116,22 +117,25 @@ export function RevolvingTextScreen() {
     >
       <PlpHeader />
       <PlpAnnouncementBar />
-      <div className="flex items-start justify-end gap-10 px-[23px] pt-6">
-        <GridDensityToggle value={density} onChange={setDensity} />
+      <div className="flex items-start justify-end gap-10 px-4 pt-6 md:px-6 lg:px-[23px]">
+        <div className="hidden lg:block">
+          <GridDensityToggle value={density} onChange={setDensity} />
+        </div>
         <DarkCo2Toggle checked={darkMode} onCheckedChange={setDarkMode} />
       </div>
-      <div className="flex flex-1 flex-col gap-10 px-[23px] pb-12 pt-6">
-        <div className="flex gap-2.5">
-          {visibleColumns.map((column, colIndex) => (
-            <div key={colIndex} className="flex min-w-0 flex-1 flex-col gap-5">
-              {column.map((spec) => (
-                <PlpProductCard
-                  key={spec.id}
-                  spec={spec}
-                  onAddToCart={() => setWaitlistOpen(true)}
-                />
-              ))}
-            </div>
+      <div className="flex flex-1 flex-col gap-10 px-4 pb-12 pt-6 md:px-6 lg:px-[23px]">
+        <div
+          className={cn(
+            "grid grid-cols-3 gap-x-2.5 gap-y-5 md:grid-cols-4",
+            density === 8 ? "lg:grid-cols-8" : "lg:grid-cols-4",
+          )}
+        >
+          {flatSpecs.map((spec) => (
+            <PlpProductCard
+              key={spec.id}
+              spec={spec}
+              onAddToCart={() => setWaitlistOpen(true)}
+            />
           ))}
         </div>
         <div className="flex justify-center pt-2">

@@ -54,8 +54,11 @@ export function WaitlistDialog({ open, onOpenChange }: WaitlistDialogProps) {
             <Input
               type="email"
               autoComplete="email"
+              autoCapitalize="none"
+              autoCorrect="off"
+              spellCheck={false}
               autoFocus
-              placeholder="ENTER EMAIL"
+              placeholder="Enter email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               onKeyDown={(e) => {
@@ -65,8 +68,8 @@ export function WaitlistDialog({ open, onOpenChange }: WaitlistDialogProps) {
                 }
               }}
               className={cn(
-                "h-14 rounded-none border-neutral-300 bg-white text-center text-base font-medium tracking-wide text-neutral-900 uppercase",
-                "placeholder:text-neutral-500 placeholder:normal-case dark:bg-white! dark:text-neutral-900",
+                "h-14 rounded-none border-neutral-300 bg-white text-center text-base font-medium tracking-wide text-neutral-900 normal-case",
+                "placeholder:text-neutral-500 dark:bg-white! dark:text-neutral-900",
               )}
               aria-label="Email address"
             />
