@@ -12,6 +12,11 @@ const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
 
 const PANEL_W = "w-[min(90vw,520px)]"
 
+/** Rotating idle lines before the user taps into the email field. */
+const IDLE_INTERVAL_MS = 3200
+
+type IdleSlide = 0 | 1 | 2
+
 type WaitlistDialogProps = {
   open: boolean
   onOpenChange: (open: boolean) => void
@@ -19,22 +24,36 @@ type WaitlistDialogProps = {
 
 export function WaitlistDialog({ open, onOpenChange }: WaitlistDialogProps) {
   const [email, setEmail] = useState("")
-  /** Before first interaction, show static label; then real email input. */
+  /** Before first interaction, show timed text; then real email input. */
   const [emailFieldActive, setEmailFieldActive] = useState(false)
+  const [idleSlide, setIdleSlide] = useState<IdleSlide>(0)
   const emailInputRef = useRef<HTMLInputElement>(null)
 
   useEffect(() => {
     if (!open) {
       setEmail("")
       setEmailFieldActive(false)
+      setIdleSlide(0)
     }
   }, [open])
+
+  useEffect(() => {
+    if (!open || emailFieldActive) return
+    const id = window.setInterval(() => {
+      setIdleSlide((s) => ((((s + 1) % 3) as IdleSlide)))
+    }, IDLE_INTERVAL_MS)
+    return () => window.clearInterval(id)
+  }, [open, emailFieldActive])
 
   useLayoutEffect(() => {
     if (open && emailFieldActive) {
       emailInputRef.current?.focus()
     }
   }, [open, emailFieldActive])
+
+  function activateEmailField() {
+    setEmailFieldActive(true)
+  }
 
   function submitEmail() {
     const trimmed = email.trim()
@@ -63,20 +82,36 @@ export function WaitlistDialog({ open, onOpenChange }: WaitlistDialogProps) {
             <button
               type="button"
               className={cn(
-                "flex h-14 w-full cursor-text items-center justify-center rounded-none border border-neutral-300 bg-white text-center text-base font-medium tracking-wide text-neutral-500 uppercase",
-                "outline-none transition-colors hover:bg-neutral-50 focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background",
-                "dark:bg-white! dark:text-neutral-500",
+                "flex min-h-14 w-full cursor-text items-center justify-center rounded-none border px-3 text-center outline-none transition-colors",
+                "focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background",
+                idleSlide === 0 &&
+                  "border-neutral-300 bg-white text-base font-medium tracking-wide text-neutral-500 uppercase hover:bg-neutral-50 dark:bg-white! dark:text-neutral-500",
+                idleSlide === 1 &&
+                  "border-black bg-black text-sm font-semibold tracking-wide text-white uppercase hover:bg-black/90 dark:border-black dark:bg-black",
+                idleSlide === 2 &&
+                  "border-neutral-300 bg-white text-sm font-medium uppercase leading-snug tracking-wide text-neutral-800 dark:bg-white! dark:text-neutral-800",
               )}
               aria-label="Enter your email address"
-              onClick={() => setEmailFieldActive(true)}
+              onClick={activateEmailField}
               onKeyDown={(e) => {
                 if (e.key === " " || e.key === "Enter") {
                   e.preventDefault()
-                  setEmailFieldActive(true)
+                  activateEmailField()
                 }
               }}
             >
-              ENTER EMAIL
+              <span
+                key={idleSlide}
+                className="animate-in fade-in-0 duration-300"
+              >
+                {idleSlide === 0 ? (
+                  "ENTER EMAIL"
+                ) : idleSlide === 1 ? (
+                  "JOIN THE WAITLIST"
+                ) : (
+                  `WE'LL LET YOU KNOW WHEN WE'RE OPEN`
+                )}
+              </span>
             </button>
           ) : (
             <div className="relative">
