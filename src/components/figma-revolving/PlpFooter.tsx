@@ -156,7 +156,7 @@ export function PlpFooter() {
   ] as const
 
   return (
-    <footer className="relative z-[60] isolate mt-auto w-full shrink-0 overflow-hidden text-white">
+    <footer className="relative z-60 isolate mt-auto w-full shrink-0 overflow-hidden text-white">
       <div
         aria-hidden
         className="pointer-events-none absolute inset-0 -z-10 bg-cover bg-bottom bg-no-repeat"

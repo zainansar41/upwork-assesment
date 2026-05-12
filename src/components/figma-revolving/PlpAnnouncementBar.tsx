@@ -25,7 +25,7 @@ function MarqueeStrip() {
 export function PlpAnnouncementBar() {
   return (
     <div
-      className="relative z-[60] flex w-full flex-col items-center justify-center overflow-hidden py-3.5"
+      className="relative z-60 flex w-full flex-col items-center justify-center overflow-hidden py-3.5"
       style={{ backgroundColor: "#c71414" }}
     >
       <div className="plp-marquee flex w-max items-start">

@@ -117,7 +117,7 @@ export function RevolvingTextScreen() {
     >
       <PlpHeader />
       <PlpAnnouncementBar />
-      <div className="relative z-[60] flex items-start justify-end gap-10 px-4 pt-6 md:px-6 lg:px-[23px]">
+      <div className="relative z-60 flex items-start justify-end gap-10 px-4 pt-6 md:px-6 lg:px-[23px]">
         <div className="hidden lg:block">
           <GridDensityToggle value={density} onChange={setDensity} />
         </div>

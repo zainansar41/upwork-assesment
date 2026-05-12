@@ -67,7 +67,7 @@ export function WaitlistDialog({ open, onOpenChange }: WaitlistDialogProps) {
         <div
           aria-hidden
           className={cn(
-            "fixed inset-0 z-[55] bg-neutral-900/50 backdrop-blur-md",
+            "fixed inset-0 z-55 bg-neutral-900/50 backdrop-blur-md",
             "data-[state=open]:animate-in data-[state=open]:fade-in-0",
             "data-[state=closed]:animate-out data-[state=closed]:fade-out-0",
           )}
@@ -75,7 +75,7 @@ export function WaitlistDialog({ open, onOpenChange }: WaitlistDialogProps) {
         />
         <DialogPrimitive.Content
           className={cn(
-            "fixed top-1/2 left-1/2 z-[70] w-max max-w-[calc(100%-2rem)] -translate-x-1/2 -translate-y-1/2 rounded-none border-0 bg-transparent p-0 text-neutral-900 shadow-none outline-none",
+            "fixed top-1/2 left-1/2 z-70 w-max max-w-[calc(100%-2rem)] -translate-x-1/2 -translate-y-1/2 rounded-none border-0 bg-transparent p-0 text-neutral-900 shadow-none outline-none",
             "gap-0 ring-0 ring-offset-0 sm:max-w-none",
             "dark:bg-transparent",
             "data-[state=open]:animate-in data-[state=open]:fade-in-0 data-[state=open]:zoom-in-95",
