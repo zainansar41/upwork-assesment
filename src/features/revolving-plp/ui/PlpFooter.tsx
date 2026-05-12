@@ -1,10 +1,4 @@
 import type { ReactNode } from "react"
-import { ChevronDown } from "lucide-react"
-import {
-  copyright,
-  footerColumns,
-  newsletter,
-} from "@/data/revolving-text-screen"
 import {
   Collapsible,
   CollapsibleContent,
@@ -12,9 +6,15 @@ import {
 } from "@/components/ui/collapsible"
 import { Input } from "@/components/ui/input"
 import { cn } from "@/lib/utils"
+import { ChevronDown } from "lucide-react"
 import { FaInstagram, FaReddit, FaTiktok } from "react-icons/fa"
 import { SiBluesky } from "react-icons/si"
-import footerGrass from "@/data/images/footer.png"
+import {
+  copyright,
+  footerColumns,
+  newsletter,
+} from "../model/plp-content"
+import footerGrass from "../assets/footer.png"
 
 function FooterLink({ children }: { children: string }) {
   return (

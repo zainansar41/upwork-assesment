@@ -1,10 +1,10 @@
-import { RevolvingTextScreen } from "@/components/figma-revolving/RevolvingTextScreen"
+import { RevolvingPlpPage } from "@/features/revolving-plp"
 
 /** Main storefront PLP — edge-to-edge, no app chrome. */
 export function HomePage() {
   return (
     <div className="min-h-svh w-full bg-white">
-      <RevolvingTextScreen />
+      <RevolvingPlpPage />
     </div>
   )
 }

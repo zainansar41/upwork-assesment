@@ -1,8 +1,8 @@
 import { useEffect, useLayoutEffect, useRef, useState } from "react"
 import { Dialog, DialogPortal, DialogTitle } from "@/components/ui/dialog"
-import { Dialog as DialogPrimitive } from "radix-ui"
 import { Input } from "@/components/ui/input"
 import { cn } from "@/lib/utils"
+import { Dialog as DialogPrimitive } from "radix-ui"
 import { Send } from "lucide-react"
 
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/

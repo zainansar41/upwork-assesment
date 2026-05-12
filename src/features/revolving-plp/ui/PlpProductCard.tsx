@@ -2,9 +2,9 @@ import {
   imageUrlForProductId,
   PLP_PRODUCT_MEDIA_IMAGE_WIDTH_PX,
 } from "@/data/product-images"
-import { productCopy, type ProductCardSpec } from "@/data/revolving-text-screen"
 import { cn } from "@/lib/utils"
 import { FiEye, FiShoppingBag } from "react-icons/fi"
+import { productCopy, type ProductCardSpec } from "../model/plp-content"
 
 type PlpProductCardProps = {
   spec: ProductCardSpec

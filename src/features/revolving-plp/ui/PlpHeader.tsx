@@ -1,7 +1,7 @@
 import type { ComponentProps } from "react"
-import { plpAssets } from "@/components/figma-revolving/plp-assets"
 import { cn } from "@/lib/utils"
 import { Search, ShoppingBag, SlidersHorizontal } from "lucide-react"
+import { plpAssets } from "../plp-assets"
 
 /** Search / Filter / Cart — kept at z-[54] so the waitlist scrim (z-[55]) sits above these only. */
 function PlpHeaderActions({ className, ...props }: ComponentProps<"div">) {

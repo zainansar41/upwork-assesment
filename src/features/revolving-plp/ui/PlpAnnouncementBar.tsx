@@ -1,5 +1,5 @@
-import { marqueeSegments } from "@/data/revolving-text-screen"
 import { Sparkles, Sun } from "lucide-react"
+import { marqueeSegments } from "../model/plp-content"
 
 function MarqueeStrip() {
   return (

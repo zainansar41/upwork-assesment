@@ -1,12 +1,12 @@
 import { useEffect, useState } from "react"
-import { PlpAnnouncementBar } from "@/components/figma-revolving/PlpAnnouncementBar"
-import { PlpFooter } from "@/components/figma-revolving/PlpFooter"
-import { PlpHeader } from "@/components/figma-revolving/PlpHeader"
-import { PlpProductCard } from "@/components/figma-revolving/PlpProductCard"
-import { WaitlistDialog } from "@/components/figma-revolving/WaitlistDialog"
 import { Button } from "@/components/ui/button"
-import { productColumns } from "@/data/revolving-text-screen"
 import { cn } from "@/lib/utils"
+import { productColumns } from "./model/plp-content"
+import { PlpAnnouncementBar } from "./ui/PlpAnnouncementBar"
+import { PlpFooter } from "./ui/PlpFooter"
+import { PlpHeader } from "./ui/PlpHeader"
+import { PlpProductCard } from "./ui/PlpProductCard"
+import { WaitlistDialog } from "./ui/WaitlistDialog"
 
 function GridDensityToggle({
   value,
@@ -93,7 +93,7 @@ function DarkCo2Toggle({
 
 const DARK_MODE_STORAGE_KEY = "revolving-plp-dark"
 
-export function RevolvingTextScreen() {
+export function RevolvingPlpPage() {
   const [density, setDensity] = useState<4 | 8>(8)
   const [darkMode, setDarkMode] = useState(() => {
     if (typeof window === "undefined") return false
